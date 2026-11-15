@@ -3,8 +3,8 @@
  * Khodlak Laffah (خدلك لفة) Configuration
  */
 
-// رقم واتساب المتجر لتلقي الطلبات (بدون علامة + أو أصفار دولية زائدة، مثل: 201012345678)
-export const WHATSAPP_NUMBER = "201025884040";
+// رقم واتساب المتجر لتلقي الطلبات (بدون علامة + أو أصفار دولية زائدة)
+export const WHATSAPP_NUMBER = "201043301676";
 
 /**
  * رابط شيت جوجل بصيغة CSV:
@@ -20,7 +20,7 @@ export const WHATSAPP_NUMBER = "201025884040";
  */
 export const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQJC1icNCivPQCJPpeYsKeAIf_Io5XtWB7jxXaKWmd0PVMOCHo_zDbKyWzw__1W6ol5JT3nweaPCd4K/pub?gid=0&single=true&output=csv";
 
-// المنتجات الافتراضية التجريبية (Fallback Products) مع دعم تعدد الصور لكل منتج
+// المنتجات الافتراضية التجريبية (Fallback Products) مع دعم تعدد الصور وتغطية كافة الأقسام
 export const fallbackProducts = [
   {
     code: "2035",
@@ -39,6 +39,48 @@ export const fallbackProducts = [
     available: "نعم"
   },
   {
+    code: "6012",
+    name: "شنطة كروس كابيتونيه فاخرة مع حزام سلسلة ذهبي",
+    category: "شنط",
+    price: 320,
+    old_price: 390,
+    description: "حقيبة يد وكتف جلد ناعم ومقاوم للخدش، قفل معدني أنيق ومساحة داخلية واسعة تناسب الخروجات والمناسبات",
+    images: [
+      "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=800&q=80"
+    ],
+    image_url: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80",
+    available: "نعم"
+  },
+  {
+    code: "7025",
+    name: "سنيكرز نسائي كاجوال جلد طبيعي خفيف ومريح",
+    category: "أحذية",
+    price: 360,
+    old_price: 450,
+    description: "حذاء رياضي أنيق بنعل طبي مبطن مضاد للانزلاق، تصميم عصري مريح جداً للمشي والجامعة والعمل اليومي",
+    images: [
+      "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=800&q=80"
+    ],
+    image_url: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=800&q=80",
+    available: "نعم"
+  },
+  {
+    code: "8030",
+    name: "مجموعة العناية الفاخرة - مسك الطهارة وزيت الورد المرطب",
+    category: "العناية والجمال",
+    price: 240,
+    old_price: 290,
+    description: "بوكس متكامل للعناية الشخصية والتعطير يضم تولة مسك أبيض أصلي مع سيروم مرطب ومعطر للجسم بخلاصة الورد الطبيعي",
+    images: [
+      "https://images.unsplash.com/photo-1608248597359-715392437ff8?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=80"
+    ],
+    image_url: "https://images.unsplash.com/photo-1608248597359-715392437ff8?auto=format&fit=crop&w=800&q=80",
+    available: "نعم"
+  },
+  {
     code: "4015",
     name: "سويت شيرت هودي رجالي أوفر سايز مبطن",
     category: "ملابس رجالي",
@@ -51,19 +93,6 @@ export const fallbackProducts = [
     ],
     image_url: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80",
     available: "نعم"
-  },
-  {
-    code: "2070",
-    name: "سويت شيرت أطفال قطن مبطن ميلتون دافئ",
-    category: "ملابس اولاد",
-    price: 220,
-    old_price: 260,
-    description: "سويت شيرت بطباعة كرتونية لطيفة، قطن مصري 100% مبطن بوبرة داخلية تدفي في أصعب الأيام الشتوية مع جيوب كنغر عملية",
-    images: [
-      "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=800&q=80"
-    ],
-    image_url: "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=800&q=80",
-    available: "لا"
   },
   {
     code: "2042",
@@ -79,6 +108,19 @@ export const fallbackProducts = [
     ],
     image_url: "https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?auto=format&fit=crop&w=800&q=80",
     available: "نعم"
+  },
+  {
+    code: "2070",
+    name: "سويت شيرت أطفال قطن مبطن ميلتون دافئ",
+    category: "ملابس اولاد",
+    price: 220,
+    old_price: 260,
+    description: "سويت شيرت بطباعة كرتونية لطيفة، قطن مصري 100% مبطن بوبرة داخلية تدفي في أصعب الأيام الشتوية مع جيوب كنغر عملية",
+    images: [
+      "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=800&q=80"
+    ],
+    image_url: "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=800&q=80",
+    available: "لا"
   },
   {
     code: "3011",
@@ -109,7 +151,7 @@ export const fallbackProducts = [
   }
 ];
 
-// أقسام المتجر الأساسية الـ 5 بالإضافة إلى تبويب "الكل"
+// أقسام المتجر الأساسية بالترتيب الدقيق المطلوب
 export const CATEGORIES = [
   { id: "all", name: "الكل" },
   { id: "ملابس حريمي", name: "ملابس حريمي" },
@@ -117,4 +159,7 @@ export const CATEGORIES = [
   { id: "ملابس اولاد", name: "ملابس اولاد" },
   { id: "ملابس بنات", name: "ملابس بنات" },
   { id: "إكسسوارات", name: "إكسسوارات" },
+  { id: "شنط", name: "شنط" },
+  { id: "أحذية", name: "أحذية" },
+  { id: "العناية والجمال", name: "العناية والجمال" },
 ];

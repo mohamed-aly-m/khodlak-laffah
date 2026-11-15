@@ -8,6 +8,9 @@ import {
   BaseballCap,
   Heart,
   Crown,
+  Handbag,
+  Sneaker,
+  FlowerLotus,
 } from "@phosphor-icons/react";
 
 export default function FilterBar({
@@ -49,6 +52,21 @@ export default function FilterBar({
       name: "إكسسوارات",
       icon: Crown,
     },
+    {
+      id: "شنط",
+      name: "شنط",
+      icon: Handbag,
+    },
+    {
+      id: "أحذية",
+      name: "أحذية",
+      icon: Sneaker,
+    },
+    {
+      id: "العناية والجمال",
+      name: "العناية والجمال",
+      icon: FlowerLotus,
+    },
   ];
 
   return (
@@ -65,7 +83,7 @@ export default function FilterBar({
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="ابحثي باسم المنتج أو الكود (مثال: 2035 أو بيجامة)..."
+          placeholder="ابحثي باسم المنتج أو الكود (مثال: 2035 أو شنطة)..."
           className="w-full pr-11 pl-10 py-3 rounded-2xl bg-white shadow-xs border border-pink-100 focus:border-primary focus:ring-2 focus:ring-primary/15 text-gray-800 placeholder-gray-400 outline-none text-sm sm:text-base transition-all"
         />
         {searchQuery && (

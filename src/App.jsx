@@ -52,6 +52,9 @@ export default function App() {
       "ملابس اولاد": 0,
       "ملابس بنات": 0,
       "إكسسوارات": 0,
+      "شنط": 0,
+      "أحذية": 0,
+      "العناية والجمال": 0,
     };
     products.forEach((p) => {
       const cat = p.category?.trim();
