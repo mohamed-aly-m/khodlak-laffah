@@ -67,8 +67,9 @@ export default function CartDrawer() {
     let itemsText = "";
     cart.forEach((item, index) => {
       const itemTotal = (Number(item.price) || 0) * item.quantity;
+      const sizeInfo = (item.selectedSize || item.sizes) ? ` | المقاس: ${item.selectedSize || item.sizes}` : "";
       itemsText += `\n${index + 1}. [كود: ${item.code}] ${item.name}
-   القسم: ${item.category} | الكمية: ${item.quantity} × ${item.price} ج.م = ${itemTotal} ج.م`;
+   القسم: ${item.category}${sizeInfo} | الكمية: ${item.quantity} × ${item.price} ج.م = ${itemTotal} ج.م`;
     });
 
     let customerInfo = "";
@@ -196,6 +197,12 @@ export default function CartDrawer() {
                     <h4 className="text-xs sm:text-sm font-bold text-gray-900 truncate">
                       {item.name}
                     </h4>
+
+                    {(item.selectedSize || item.sizes) && (
+                      <div className="text-[10px] text-gray-500 font-semibold mt-0.5 truncate">
+                        المقاس: {item.selectedSize || item.sizes}
+                      </div>
+                    )}
 
                     <div className="text-xs font-black text-primary mt-1">
                       {item.price * item.quantity} ج.م

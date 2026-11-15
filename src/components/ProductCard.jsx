@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ShoppingBag, Prohibit, Eye, Images } from "@phosphor-icons/react";
+import { ShoppingBag, Prohibit, Eye, Images, Ruler } from "@phosphor-icons/react";
 import { useCart } from "../context/CartContext";
 import { getCategoryBadgeClass } from "../utils/categoryStyles";
 
@@ -111,6 +111,14 @@ export default function ProductCard({ product, onOpenModal }) {
           <h3 className="line-clamp-2 font-bold text-gray-800 text-sm leading-snug group-hover:text-primary transition-colors min-h-[2.5rem]">
             {product.name}
           </h3>
+
+          {/* شارة المقاسات المتاحة بخط أنيق وواضح */}
+          {product.sizes && (
+            <div className="mt-1 flex items-center gap-1 text-[11px] font-semibold text-gray-600 bg-pink-50/70 border border-pink-100/80 rounded-md px-1.5 py-0.5 w-fit max-w-full">
+              <Ruler weight="duotone" className="w-3.5 h-3.5 text-secondary shrink-0" />
+              <span className="truncate">{product.sizes}</span>
+            </div>
+          )}
         </div>
 
         <div>

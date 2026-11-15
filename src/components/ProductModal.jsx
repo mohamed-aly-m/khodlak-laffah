@@ -11,6 +11,7 @@ import {
   CaretRight,
   CaretLeft,
   Images,
+  Ruler,
 } from "@phosphor-icons/react";
 import { useCart } from "../context/CartContext";
 import { WHATSAPP_NUMBER } from "../data/config";
@@ -22,12 +23,14 @@ export default function ProductModal({ product, onClose }) {
   const [added, setAdded] = useState(false);
   const [imgError, setImgError] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [selectedSize, setSelectedSize] = useState("");
 
-  // إعادة تعيين الصورة المختارة والكمية عند فتح منتج جديد
+  // إعادة تعيين الصورة المختارة والكمية والمقاس عند فتح منتج جديد
   useEffect(() => {
     setActiveIndex(0);
     setImgError(false);
     setQuantity(1);
+    setSelectedSize("");
   }, [product?.code]);
 
   useEffect(() => {
@@ -69,7 +72,8 @@ export default function ProductModal({ product, onClose }) {
 
   const handleAddToCart = () => {
     if (isOutOfStock) return;
-    addToCart(product, quantity);
+    const finalSize = selectedSize.trim() || product.sizes || "مقاس موحد";
+    addToCart({ ...product, selectedSize: finalSize }, quantity);
     setAdded(true);
     setTimeout(() => {
       setAdded(false);
@@ -79,11 +83,13 @@ export default function ProductModal({ product, onClose }) {
 
   const handleDirectWhatsApp = () => {
     const total = (Number(product.price) || 0) * quantity;
+    const finalSize = selectedSize.trim() || product.sizes || "مقاس موحد";
     const message = `مرحباً خدلك لفة 🌸
 أود طلب المنتج التالي مباشرة:
 📌 كود المنتج: [${product.code}]
 🛍️ اسم المنتج: ${product.name}
 📦 القسم: ${product.category}
+📏 المقاس: ${finalSize}
 🔢 الكمية: ${quantity}
 💰 إجمالي السعر: ${total} ج.م
 
@@ -253,6 +259,36 @@ export default function ProductModal({ product, onClose }) {
                 </span>
               )}
             </div>
+
+            {/* خانة المقاسات المتاحة بشكل بارز ومميز */}
+            {product.sizes && (
+              <div className="p-3.5 bg-pink-50/70 rounded-2xl border border-pink-100 flex flex-col gap-2.5">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-gray-700">
+                    <Ruler weight="duotone" className="w-4 h-4 text-secondary" />
+                    <span>المقاسات المتاحة للقطعة:</span>
+                  </div>
+                  <span className="text-xs font-black text-primary bg-white px-2.5 py-1 rounded-lg border border-pink-200/80 shadow-2xs">
+                    {product.sizes}
+                  </span>
+                </div>
+
+                {!isOutOfStock && (
+                  <div className="flex items-center gap-2 pt-2 border-t border-pink-100/70">
+                    <span className="text-[11px] font-bold text-gray-600 whitespace-nowrap">
+                      مقاسك المطلوب:
+                    </span>
+                    <input
+                      type="text"
+                      value={selectedSize}
+                      onChange={(e) => setSelectedSize(e.target.value)}
+                      placeholder={product.sizes.includes(",") || product.sizes.includes("-") ? "اكتبي مقاسك المطلوب هنا..." : "حددي مقاسك أو اتركيها فارغة (اختياري)..."}
+                      className="flex-1 text-xs px-3 py-1.5 rounded-xl bg-white border border-pink-200/80 focus:border-secondary focus:ring-1 focus:ring-secondary/20 outline-none transition-all placeholder-gray-400"
+                    />
+                  </div>
+                )}
+              </div>
+            )}
 
             {/* تفاصيل الوصف الكامل */}
             <div className="space-y-1.5">

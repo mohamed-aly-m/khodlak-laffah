@@ -22,6 +22,8 @@ export function getCategoryBadgeClass(category) {
       return "bg-[#FB7185]/20 text-[#BE123C] border-[#FB7185]/40";
     case "إكسسوارات":
       return "bg-[#B88ED6]/20 text-[#6B3BA7] border-[#B88ED6]/40";
+    case "الطرح الحريمي":
+      return "bg-purple-500/15 text-purple-800 border-purple-500/30";
     case "شنط":
       return "bg-amber-500/15 text-amber-800 border-amber-500/30";
     case "أحذية":

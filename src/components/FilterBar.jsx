@@ -8,6 +8,7 @@ import {
   BaseballCap,
   Heart,
   Crown,
+  Wind,
   Handbag,
   Sneaker,
   FlowerLotus,
@@ -51,6 +52,11 @@ export default function FilterBar({
       id: "إكسسوارات",
       name: "إكسسوارات",
       icon: Crown,
+    },
+    {
+      id: "الطرح الحريمي",
+      name: "الطرح الحريمي",
+      icon: Wind,
     },
     {
       id: "شنط",

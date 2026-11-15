@@ -92,6 +92,7 @@ function normalizeFallbackProducts() {
     const primaryImage = images[0];
     return {
       ...p,
+      sizes: p.sizes || "مقاس موحد",
       images,
       image_url: primaryImage,
       image: primaryImage,
@@ -152,6 +153,9 @@ export async function fetchProductsFromSheet() {
         if (category === "ملابس") category = "ملابس حريمي";
         if (category === "أطفال") category = "ملابس اولاد";
 
+        const sizesRaw = getColumnValue(row, ["sizes", "size", "مقاسات", "المقاسات", "المقاس"]);
+        const sizes = sizesRaw.trim() || "مقاس موحد";
+
         const priceRaw = getColumnValue(row, ["price", "السعر", "سعر"]);
         const oldPriceRaw = getColumnValue(row, ["old_price", "oldprice", "السعر القديم", "قبل الخصم"]);
         const description = getColumnValue(row, ["description", "الوصف", "تفاصيل", "التفاصيل"]);
@@ -180,6 +184,7 @@ export async function fetchProductsFromSheet() {
           code,
           name,
           category,
+          sizes,
           price,
           old_price,
           description,
