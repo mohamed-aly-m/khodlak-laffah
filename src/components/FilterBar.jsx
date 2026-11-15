@@ -54,11 +54,6 @@ export default function FilterBar({
       icon: Crown,
     },
     {
-      id: "الطرح الحريمي",
-      name: "الطرح الحريمي",
-      icon: Wind,
-    },
-    {
       id: "شنط",
       name: "شنط",
       icon: Handbag,
@@ -67,6 +62,11 @@ export default function FilterBar({
       id: "أحذية",
       name: "أحذية",
       icon: Sneaker,
+    },
+    {
+      id: "الطرح الحريمي",
+      name: "الطرح الحريمي",
+      icon: Wind,
     },
     {
       id: "العناية والجمال",

@@ -153,7 +153,7 @@ export async function fetchProductsFromSheet() {
         if (category === "ملابس") category = "ملابس حريمي";
         if (category === "أطفال") category = "ملابس اولاد";
 
-        const sizesRaw = getColumnValue(row, ["sizes", "size", "مقاسات", "المقاسات", "المقاس"]);
+        const sizesRaw = getColumnValue(row, ["sizes", "size", "مقاسات", "المقاسات", "المقاس", "الأحجام", "الحجم"]);
         const sizes = sizesRaw.trim() || "مقاس موحد";
 
         const priceRaw = getColumnValue(row, ["price", "السعر", "سعر"]);
