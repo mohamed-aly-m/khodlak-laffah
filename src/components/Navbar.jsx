@@ -1,8 +1,8 @@
 import React from "react";
-import { ShoppingBag, Sparkle } from "@phosphor-icons/react";
+import { ShoppingBag, Sparkle, SquaresFour } from "@phosphor-icons/react";
 import { useCart } from "../context/CartContext";
 
-export default function Navbar() {
+export default function Navbar({ onOpenCategoryDrawer, selectedCategory = "all" }) {
   const { totalItemsCount, setIsDrawerOpen } = useCart();
 
   return (
@@ -43,12 +43,28 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* زر سلة المشتريات بحقيبة تسوق عصرية duotone */}
+        {/* أزرار الإجراءات: زر الأقسام وزر سلة المشتريات */}
         <div className="flex items-center gap-2 shrink-0">
+          {/* زر فتح قائمة الأقسام الجانبية في الهيدر */}
+          <button
+            onClick={onOpenCategoryDrawer}
+            aria-label="أقسام المتجر"
+            className="flex items-center gap-1.5 px-3 py-2 sm:px-4 sm:py-2.5 rounded-full bg-white hover:bg-pink-50 text-gray-800 border border-pink-200 shadow-2xs hover:border-primary/40 active:scale-95 transition-all cursor-pointer"
+          >
+            <SquaresFour weight="duotone" className="w-5 h-5 text-secondary shrink-0" />
+            <span className="text-xs sm:text-sm font-bold text-gray-800 hidden xs:inline">
+              الأقسام
+            </span>
+            <span className="text-[10px] sm:text-xs bg-primary text-white px-2 py-0.5 rounded-full font-bold max-w-[75px] sm:max-w-[115px] truncate">
+              {selectedCategory === "all" ? "الكل" : selectedCategory}
+            </span>
+          </button>
+
+          {/* زر سلة المشتريات بحقيبة تسوق عصرية duotone */}
           <button
             onClick={() => setIsDrawerOpen(true)}
             aria-label="سلة المشتريات"
-            className="relative flex items-center justify-center gap-2 px-3.5 py-2.5 sm:px-5 sm:py-2.5 rounded-full bg-gradient-to-r from-primary to-[#862562] text-white hover:brightness-110 active:scale-95 transition-all shadow-md hover:shadow-lg cursor-pointer"
+            className="relative flex items-center justify-center gap-2 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-full bg-gradient-to-r from-primary to-[#862562] text-white hover:brightness-110 active:scale-95 transition-all shadow-md hover:shadow-lg cursor-pointer"
           >
             <div className="relative">
               <ShoppingBag weight="duotone" className="w-5 h-5 text-white" />

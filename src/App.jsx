@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import Navbar from "./components/Navbar";
 import FilterBar from "./components/FilterBar";
+import CategoryDrawer from "./components/CategoryDrawer";
 import ProductCard from "./components/ProductCard";
 import ProductModal from "./components/ProductModal";
 import CartDrawer from "./components/CartDrawer";
@@ -23,6 +24,7 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [isCategoryDrawerOpen, setIsCategoryDrawerOpen] = useState(false);
   const { toastMessage, setIsDrawerOpen, totalItemsCount } = useCart();
 
   // جلب المنتجات عند بدء التشغيل
@@ -88,7 +90,10 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col bg-[#FDF3F6] text-gray-800 font-sans selection:bg-secondary selection:text-white">
       {/* الهيدر الثابت */}
-      <Navbar />
+      <Navbar
+        onOpenCategoryDrawer={() => setIsCategoryDrawerOpen(true)}
+        selectedCategory={selectedCategory}
+      />
 
       {/* بنر ترحيبي جذاب (Hero Section) */}
       <section className="relative overflow-hidden bg-gradient-to-b from-[#6A1B4D] via-[#7d1f5b] to-[#6A1B4D] text-white py-6 sm:py-9 px-4 border-b border-[#F5D5E2]/30">
@@ -138,7 +143,7 @@ export default function App() {
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
         totalCount={filteredProducts.length}
-        categoryCounts={categoryCounts}
+        onOpenCategoryDrawer={() => setIsCategoryDrawerOpen(true)}
       />
 
       {/* محتوى المنتجات الرئيسي - شبكة عرض بعمودين على الموبايل */}
@@ -216,6 +221,15 @@ export default function App() {
           onClose={() => setSelectedProduct(null)}
         />
       )}
+
+      {/* القائمة الجانبية للأقسام */}
+      <CategoryDrawer
+        isOpen={isCategoryDrawerOpen}
+        onClose={() => setIsCategoryDrawerOpen(false)}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+        categoryCounts={categoryCounts}
+      />
 
       {/* سلة المشتريات المنزلقة */}
       <CartDrawer />
