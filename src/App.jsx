@@ -5,6 +5,7 @@ import CategoryDrawer from "./components/CategoryDrawer";
 import ProductCard from "./components/ProductCard";
 import ProductModal from "./components/ProductModal";
 import CartDrawer from "./components/CartDrawer";
+import Footer from "./components/Footer";
 import LoadingSkeleton from "./components/LoadingSkeleton";
 import { fetchProductsFromSheet } from "./services/sheetService";
 import { useCart } from "./context/CartContext";
@@ -234,39 +235,8 @@ export default function App() {
       {/* سلة المشتريات المنزلقة */}
       <CartDrawer />
 
-      {/* الفوتر */}
-      <footer className="bg-white border-t border-pink-100 mt-12 py-8 px-4 text-center">
-        <div className="max-w-6xl mx-auto space-y-4">
-          <div className="flex items-center justify-center gap-2">
-            <img
-              src="/logo.png"
-              alt="خدلك لفة"
-              className="w-10 h-10 rounded-full border border-secondary object-cover"
-            />
-            <span className="text-xl font-black text-primary">خدلك لفة</span>
-          </div>
-          <p className="text-xs text-gray-500 max-w-sm mx-auto">
-            ملابس .. أطفال .. إكسسوارات | اختياراتك دايماً أجمل
-          </p>
-
-          <div className="pt-2 flex items-center justify-center gap-4 text-xs font-bold text-primary">
-            <a
-              href={`https://wa.me/${WHATSAPP_NUMBER.replace(/\D/g, "")}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 transition-colors"
-            >
-              <WhatsappLogo weight="duotone" className="w-5 h-5 text-emerald-600" />
-              <span>تواصل مع الإدارة عبر واتساب</span>
-            </a>
-          </div>
-
-          <p className="text-[11px] text-gray-400 pt-3 border-t border-gray-100 flex items-center justify-center gap-1">
-            <span>جميع الحقوق محفوظة &copy; {new Date().getFullYear()} لـ</span>
-            <strong className="text-gray-600">خدلك لفة (Khodlak Laffah)</strong>
-          </p>
-        </div>
-      </footer>
+      {/* الفوتر وتوقيع البراند */}
+      <Footer />
     </div>
   );
 }

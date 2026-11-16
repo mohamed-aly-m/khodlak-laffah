@@ -120,8 +120,8 @@ export default function ProductModal({ product, onClose }) {
 
         {/* محتوى النافذة القابل للتمرير */}
         <div className="overflow-y-auto flex-1 p-0 no-scrollbar">
-          {/* قسم المعرض التفاعلي للصورة الرئيسية */}
-          <div className="relative aspect-[4/4] sm:aspect-[4/3] w-full bg-pink-50/50 overflow-hidden select-none">
+          {/* قسم المعرض التفاعلي للصورة الرئيسية بدون قص */}
+          <div className="relative h-72 sm:h-96 w-full bg-[#FAF6F8] flex items-center justify-center overflow-hidden select-none">
             <img
               src={
                 imgError
@@ -130,7 +130,7 @@ export default function ProductModal({ product, onClose }) {
               }
               alt={`${product.name} - صورة ${activeIndex + 1}`}
               onError={() => setImgError(true)}
-              className={`w-full h-full object-cover object-center transition-all duration-300 ${
+              className={`w-full h-full object-contain p-2 transition-all duration-300 ${
                 isOutOfStock ? "grayscale-[40%]" : ""
               }`}
             />
@@ -212,7 +212,7 @@ export default function ProductModal({ product, onClose }) {
                     <img
                       src={imgUrl}
                       alt={`${product.name} - مصغرة ${idx + 1}`}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain p-1 bg-[#FAF6F8]"
                     />
                   </button>
                 );

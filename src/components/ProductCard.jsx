@@ -32,8 +32,8 @@ export default function ProductCard({ product, onOpenModal }) {
         isOutOfStock ? "opacity-85" : "hover:-translate-y-1"
       }`}
     >
-      {/* حاوية الصورة بنسبة أبعاد مثالية للملابس aspect-[4/5] */}
-      <div className="aspect-[4/5] relative overflow-hidden rounded-t-2xl bg-pink-50/40">
+      {/* حاوية الصورة بنسبة أبعاد ثابتة بدون قص للأطراف */}
+      <div className="aspect-[4/5] bg-[#FAF6F8] flex items-center justify-center overflow-hidden relative rounded-t-2xl">
         <img
           src={
             imageError
@@ -43,7 +43,7 @@ export default function ProductCard({ product, onOpenModal }) {
           alt={product.name}
           loading="lazy"
           onError={() => setImageError(true)}
-          className={`w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ${
+          className={`w-full h-full object-contain p-1.5 transition-transform duration-300 group-hover:scale-105 ${
             isOutOfStock ? "grayscale-[40%]" : ""
           }`}
         />
@@ -107,18 +107,20 @@ export default function ProductCard({ product, onOpenModal }) {
             </span>
           </div>
 
-          {/* اسم المنتج بحد أقصى سطرين */}
-          <h3 className="line-clamp-2 font-bold text-gray-800 text-sm leading-snug group-hover:text-primary transition-colors min-h-[2.5rem]">
+          {/* اسم المنتج بحد أقصى سطرين مع ارتفاع ثابت لتوحيد المحاذاة */}
+          <h3 className="line-clamp-2 min-h-[2.5rem] font-bold text-gray-800 text-sm leading-snug group-hover:text-primary transition-colors flex items-center">
             {product.name}
           </h3>
 
-          {/* شارة المقاسات المتاحة بخط أنيق وواضح */}
-          {product.sizes && (
-            <div className="mt-1 flex items-center gap-1 text-[11px] font-semibold text-gray-600 bg-pink-50/70 border border-pink-100/80 rounded-md px-1.5 py-0.5 w-fit max-w-full">
-              <Ruler weight="duotone" className="w-3.5 h-3.5 text-secondary shrink-0" />
-              <span className="truncate">{product.sizes}</span>
-            </div>
-          )}
+          {/* شارة المقاسات المتاحة بارتفاع متناسق لتوحيد المحاذاة */}
+          <div className="min-h-[1.75rem] flex items-center mt-1">
+            {product.sizes && (
+              <div className="flex items-center gap-1 text-[11px] font-semibold text-gray-600 bg-pink-50/70 border border-pink-100/80 rounded-md px-1.5 py-0.5 w-fit max-w-full">
+                <Ruler weight="duotone" className="w-3.5 h-3.5 text-secondary shrink-0" />
+                <span className="truncate">{product.sizes}</span>
+              </div>
+            )}
+          </div>
         </div>
 
         <div>
