@@ -12,7 +12,8 @@ async function sendAdminRequest(payload) {
   if (
     !ADMIN_SCRIPT_URL ||
     ADMIN_SCRIPT_URL.trim() === "" ||
-    ADMIN_SCRIPT_URL.includes("ضع_هنا")
+    ADMIN_SCRIPT_URL.includes("ضع_هنا") ||
+    ADMIN_SCRIPT_URL.includes("الصق_هنا")
   ) {
     throw new Error(
       "لم يتم ضبط رابط Google Apps Script Web App بعد. يرجى وضع الرابط في متغير ADMIN_SCRIPT_URL بملف src/data/config.js."
