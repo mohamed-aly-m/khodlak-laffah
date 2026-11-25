@@ -1,9 +1,32 @@
-import React from "react";
-import { WhatsappLogo, Sparkle, ArrowUpRight, LockKey } from "@phosphor-icons/react";
+import React, { useState } from "react";
+import {
+  WhatsappLogo,
+  FacebookLogo,
+  ArrowUpRight,
+  LockKey,
+} from "@phosphor-icons/react";
 import { WHATSAPP_NUMBER } from "../data/config";
 
 export default function Footer({ onOpenAdmin }) {
   const cleanPhone = WHATSAPP_NUMBER.replace(/\D/g, "");
+  const [clickCount, setClickCount] = useState(0);
+
+  // فتح لوحة الإدارة عند النقر 5 مرات متتالية على نص حقوق الملكية
+  const handleCopyrightClick = () => {
+    const nextCount = clickCount + 1;
+    if (nextCount >= 5) {
+      setClickCount(0);
+      if (onOpenAdmin) {
+        onOpenAdmin();
+      } else {
+        window.location.hash = "#admin";
+      }
+    } else {
+      setClickCount(nextCount);
+      // إعادة تعيين العداد بعد 3 ثوانٍ من التوقف
+      setTimeout(() => setClickCount(0), 3000);
+    }
+  };
 
   return (
     <footer className="bg-white border-t border-pink-100 mt-12 py-8 px-4 text-center">
@@ -25,8 +48,9 @@ export default function Footer({ onOpenAdmin }) {
           ملابس .. أطفال .. إكسسوارات | اختياراتك دايماً أجمل ✨
         </p>
 
-        {/* زر التواصل عبر الواتساب */}
-        <div className="pt-1 flex items-center justify-center gap-4 text-xs font-bold text-primary">
+        {/* أزرار التواصل الاجتماعي: واتساب وفيسبوك */}
+        <div className="pt-1 flex items-center justify-center gap-3 flex-wrap text-xs font-bold">
+          {/* رابط واتساب الإدارة */}
           <a
             href={`https://wa.me/${cleanPhone}`}
             target="_blank"
@@ -36,12 +60,27 @@ export default function Footer({ onOpenAdmin }) {
             <WhatsappLogo weight="duotone" className="w-5 h-5 text-emerald-600" />
             <span>تواصل مع الإدارة عبر واتساب</span>
           </a>
+
+          {/* رابط صفحة فيسبوك الرسمية */}
+          <a
+            href="https://www.facebook.com/profile.php?id=61595229841192"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 text-blue-700 hover:bg-blue-100 border border-blue-200 transition-colors cursor-pointer"
+          >
+            <FacebookLogo weight="duotone" className="w-5 h-5 text-blue-600" />
+            <span>صفحتنا على فيسبوك</span>
+          </a>
         </div>
 
         {/* خط فاصل وحقوق الملكية والتوقيع */}
         <div className="pt-4 border-t border-gray-100 space-y-2.5">
-          {/* حقوق ملكية المتجر */}
-          <p className="text-xs text-gray-500 font-medium">
+          {/* حقوق ملكية المتجر مع دعم النقر 5 مرات لفتح لوحة الإدارة بشكل خفي */}
+          <p
+            onClick={handleCopyrightClick}
+            className="text-xs text-gray-500 font-medium select-none cursor-default"
+            title="خدلك لفة"
+          >
             جميع الحقوق محفوظة &copy; 2026 - خدلك لفة
           </p>
 
@@ -62,7 +101,7 @@ export default function Footer({ onOpenAdmin }) {
             </a>
           </div>
 
-          {/* زر إدارة المتجر الصغير المحمي */}
+          {/* أيقونة القفل البسيطة والباهتة جداً لدخول لوحة الإدارة بهدوء دون لفت انتباه الزوار */}
           <div className="pt-1 flex items-center justify-center">
             <button
               onClick={() => {
@@ -72,11 +111,11 @@ export default function Footer({ onOpenAdmin }) {
                   window.location.hash = "#admin";
                 }
               }}
-              className="inline-flex items-center gap-1 text-[11px] text-gray-400 hover:text-primary transition-colors cursor-pointer"
-              title="دخول لوحة تحكم الإدارة"
+              aria-label="لوحة الإدارة"
+              className="opacity-35 hover:opacity-100 text-gray-400 hover:text-primary transition-opacity duration-200 p-1 cursor-pointer"
+              title="لوحة الإدارة"
             >
               <LockKey weight="duotone" className="w-3.5 h-3.5" />
-              <span>إدارة المتجر</span>
             </button>
           </div>
         </div>
