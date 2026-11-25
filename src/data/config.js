@@ -19,6 +19,9 @@ export const WHATSAPP_NUMBER = "201043301676";
  */
 export const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQJC1icNCivPQCJPpeYsKeAIf_Io5XtWB7jxXaKWmd0PVMOCHo_zDbKyWzw__1W6ol5JT3nweaPCd4K/pub?gid=0&single=true&output=csv";
 
+// رابط Google Apps Script Web App للوحة تحكم إدارة المتجر
+export const ADMIN_SCRIPT_URL = "ضع_هنا_رابط_Web_App_URL";
+
 // المنتجات الافتراضية التجريبية (Fallback Products) مع دعم تعدد الصور والمقاسات الحرة
 export const fallbackProducts = [
   {

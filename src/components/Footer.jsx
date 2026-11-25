@@ -1,8 +1,8 @@
 import React from "react";
-import { WhatsappLogo, Sparkle, ArrowUpRight } from "@phosphor-icons/react";
+import { WhatsappLogo, Sparkle, ArrowUpRight, LockKey } from "@phosphor-icons/react";
 import { WHATSAPP_NUMBER } from "../data/config";
 
-export default function Footer() {
+export default function Footer({ onOpenAdmin }) {
   const cleanPhone = WHATSAPP_NUMBER.replace(/\D/g, "");
 
   return (
@@ -60,6 +60,24 @@ export default function Footer() {
               </span>
               <ArrowUpRight weight="bold" className="w-3 h-3 text-gray-400 group-hover:text-secondary transition-colors" />
             </a>
+          </div>
+
+          {/* زر إدارة المتجر الصغير المحمي */}
+          <div className="pt-1 flex items-center justify-center">
+            <button
+              onClick={() => {
+                if (onOpenAdmin) {
+                  onOpenAdmin();
+                } else {
+                  window.location.hash = "#admin";
+                }
+              }}
+              className="inline-flex items-center gap-1 text-[11px] text-gray-400 hover:text-primary transition-colors cursor-pointer"
+              title="دخول لوحة تحكم الإدارة"
+            >
+              <LockKey weight="duotone" className="w-3.5 h-3.5" />
+              <span>إدارة المتجر</span>
+            </button>
           </div>
         </div>
       </div>

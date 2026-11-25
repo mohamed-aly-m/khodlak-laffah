@@ -6,6 +6,7 @@ import ProductCard from "./components/ProductCard";
 import ProductModal from "./components/ProductModal";
 import CartDrawer from "./components/CartDrawer";
 import Footer from "./components/Footer";
+import AdminDashboard from "./components/AdminDashboard";
 import LoadingSkeleton from "./components/LoadingSkeleton";
 import { fetchProductsFromSheet } from "./services/sheetService";
 import { useCart } from "./context/CartContext";
@@ -26,7 +27,25 @@ export default function App() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isCategoryDrawerOpen, setIsCategoryDrawerOpen] = useState(false);
+  const [currentView, setCurrentView] = useState(() => {
+    return typeof window !== "undefined" && window.location.hash === "#admin"
+      ? "admin"
+      : "store";
+  });
   const { toastMessage, setIsDrawerOpen, totalItemsCount } = useCart();
+
+  // مراقبة الـ hash في المتصفح للتبديل بين المتجر ولوحة الإدارة (#admin)
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === "#admin") {
+        setCurrentView("admin");
+      } else {
+        setCurrentView("store");
+      }
+    };
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
 
   // جلب المنتجات عند بدء التشغيل
   const loadData = async () => {
@@ -87,6 +106,19 @@ export default function App() {
       return matchesCategory && matchesSearch;
     });
   }, [products, selectedCategory, searchQuery]);
+
+  // إذا كان الرابط #admin يتم عرض لوحة تحكم الإدارة
+  if (currentView === "admin") {
+    return (
+      <AdminDashboard
+        onBackToStore={() => {
+          window.location.hash = "";
+          setCurrentView("store");
+          loadData();
+        }}
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FDF3F6] text-gray-800 font-sans selection:bg-secondary selection:text-white">
@@ -236,7 +268,12 @@ export default function App() {
       <CartDrawer />
 
       {/* الفوتر وتوقيع البراند */}
-      <Footer />
+      <Footer
+        onOpenAdmin={() => {
+          window.location.hash = "#admin";
+          setCurrentView("admin");
+        }}
+      />
     </div>
   );
 }
