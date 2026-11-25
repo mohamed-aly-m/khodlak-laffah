@@ -3,7 +3,6 @@ import {
   WhatsappLogo,
   FacebookLogo,
   ArrowUpRight,
-  LockKey,
 } from "@phosphor-icons/react";
 import { WHATSAPP_NUMBER } from "../data/config";
 
@@ -99,24 +98,6 @@ export default function Footer({ onOpenAdmin }) {
               </span>
               <ArrowUpRight weight="bold" className="w-3 h-3 text-gray-400 group-hover:text-secondary transition-colors" />
             </a>
-          </div>
-
-          {/* أيقونة القفل البسيطة والباهتة جداً لدخول لوحة الإدارة بهدوء دون لفت انتباه الزوار */}
-          <div className="pt-1 flex items-center justify-center">
-            <button
-              onClick={() => {
-                if (onOpenAdmin) {
-                  onOpenAdmin();
-                } else {
-                  window.location.hash = "#admin";
-                }
-              }}
-              aria-label="لوحة الإدارة"
-              className="opacity-35 hover:opacity-100 text-gray-400 hover:text-primary transition-opacity duration-200 p-1 cursor-pointer"
-              title="لوحة الإدارة"
-            >
-              <LockKey weight="duotone" className="w-3.5 h-3.5" />
-            </button>
           </div>
         </div>
       </div>

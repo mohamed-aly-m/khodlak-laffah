@@ -126,6 +126,10 @@ export default function App() {
       <Navbar
         onOpenCategoryDrawer={() => setIsCategoryDrawerOpen(true)}
         selectedCategory={selectedCategory}
+        onOpenAdmin={() => {
+          window.location.hash = "#admin";
+          setCurrentView("admin");
+        }}
       />
 
       {/* بنر ترحيبي جذاب (Hero Section) */}

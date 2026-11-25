@@ -1,8 +1,8 @@
 import React from "react";
-import { ShoppingBag, Sparkle, SquaresFour } from "@phosphor-icons/react";
+import { ShoppingBag, Sparkle, SquaresFour, LockKey } from "@phosphor-icons/react";
 import { useCart } from "../context/CartContext";
 
-export default function Navbar({ onOpenCategoryDrawer, selectedCategory = "all" }) {
+export default function Navbar({ onOpenCategoryDrawer, selectedCategory = "all", onOpenAdmin }) {
   const { totalItemsCount, setIsDrawerOpen } = useCart();
 
   return (
@@ -34,6 +34,18 @@ export default function Navbar({ onOpenCategoryDrawer, selectedCategory = "all" 
               <span className="text-[11px] sm:text-xs bg-secondary/10 text-primary px-2 py-0.5 rounded-full font-bold hidden xs:inline-block border border-secondary/20 whitespace-nowrap">
                 Khodlak Laffah
               </span>
+              {/* أيقونة قفل صغيرة جداً وباهتة لفتح لوحة الإدارة بهدوء */}
+              <button
+                onClick={() => {
+                  if (onOpenAdmin) onOpenAdmin();
+                  else window.location.hash = "#admin";
+                }}
+                aria-label="لوحة الإدارة"
+                title="لوحة الإدارة"
+                className="opacity-20 hover:opacity-80 text-gray-400 hover:text-primary transition-opacity duration-200 p-0.5 cursor-pointer inline-flex items-center"
+              >
+                <LockKey weight="duotone" className="w-3.5 h-3.5" />
+              </button>
             </div>
             <p className="text-xs sm:text-sm text-secondary font-semibold flex items-center gap-1 mt-0.5 truncate">
               <Sparkle weight="duotone" className="w-4 h-4 text-secondary shrink-0" />
